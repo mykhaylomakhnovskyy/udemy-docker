@@ -1,0 +1,6 @@
+.git
+.dockerignore
+.env
+udemy-docker-rails/node_modules/
+udemy-docker-rails/vendor/bundle/
+udemy-docker-rails/tmp/

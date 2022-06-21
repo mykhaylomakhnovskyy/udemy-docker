@@ -8,15 +8,15 @@ Bundler.require(*Rails.groups)
 
 module UdemyDockerRails
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.log_level = :debug
+    config.log_tags  = [:subdomain, :uuid]
+    config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+
+    config.cache_store = :redis_store, ENV['CACHE_URL'],
+                          { namespace: 'udemy-docker-rails::cache' }
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
