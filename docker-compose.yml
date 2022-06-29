@@ -22,8 +22,6 @@ services:
   udemy-docker-rails:
     build:
       context: .
-    volumes:
-      - ./udemy-docker-rails:/opt/app
     links:
       - postgres
       - redis
